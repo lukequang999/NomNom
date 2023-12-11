@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NomNom - Trang Chủ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #nomnom-home {
+            background-color: white;
+            width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #logo {
+            color: #1877f2;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        #user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        #user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        #user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #user-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        #post-form {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: none;
+            font-size: 1.2em;
+        }
+
+        #post-btn {
+            background-color: #1877f2;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        #post-btn:hover {
+            background-color: #1469c1;
+        }
+
+        .post {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .post-content {
+            flex-grow: 1;
+        }
+
+        .post-content p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div id="nomnom-home">
+        <div id="header">
+            <div id="logo">NomNom</div>
+            <div id="user-profile">
+                <div id="user-avatar">
+                    <img src="https://placekitten.com/40/40" alt="User Avatar">
+                </div>
+                <div id="user-name">Nhật QUang</div>
+            </div>
+        </div>
+
+        <div id="post-form">
+            <textarea placeholder="Bạn đang nghĩ gì?"></textarea>
+            <button id="post-btn" type="button">Đăng</button>
+        </div>
+
+        <!-- Hiển thị các bài viết -->
+        <div class="post">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="https://placekitten.com/40/40" alt="User Avatar">
+                </div>
+                <div class="user-name">Jane Doe</div>
+            </div>
+            <div class="post-content">
+                <p>Nội dung bài viết...</p>
+            </div>
+        </div>
+
+        <!-- Thêm các bài viết khác tại đây -->
+
+    </div>
+</body>
+</html>

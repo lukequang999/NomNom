@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NomNom Administrator Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafc;
+        }
+
+        #dashboard-container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: #333;
+        }
+
+        #header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        #user-analytics, #traffic-analytics, #post-management, #role-management {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="dashboard-container">
+        <div id="header">
+            <h1>NomNom Administrator Dashboard</h1>
+        </div>
+
+        <div id="user-analytics">
+            <h2>User Analytics</h2>
+            <!-- Thêm các đồ thị hoặc bảng để hiển thị thông tin người dùng -->
+        </div>
+
+        <div id="traffic-analytics">
+            <h2>Traffic Analytics</h2>
+            <!-- Thêm các đồ thị hoặc bảng để hiển thị thông tin lưu lượng truy cập -->
+        </div>
+
+        <div id="post-management">
+            <h2>Post Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sample Post 1</td>
+                        <td>John Doe</td>
+                        <td>2023-01-01</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sample Post 2</td>
+                        <td>Jane Doe</td>
+                        <td>2023-01-05</td>
+                    </tr>
+                    <!-- Thêm các dòng khác tùy thuộc vào dữ liệu của bạn -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="role-management">
+            <h2>Role Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role Name</th>
+                        <th>Permissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Admin</td>
+                        <td>Create, Read, Update, Delete</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Editor</td>
+                        <td>Read, Update</td>
+                    </tr>
+                    <!-- Thêm các dòng khác tùy thuộc vào dữ liệu của bạn -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Thêm các phần tử khác tùy thuộc vào nhu cầu cụ thể của bạn -->
+
+    </div>
+
+</body>
+</html>
