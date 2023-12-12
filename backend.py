@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=os.path.abspath('C:\\Users\\Administrator\\Desktop\\CNPM'))
 
 # Dữ liệu tài khoản người dùng
 user_accounts = {'admin': '1234', 'guest': 'password'}
@@ -24,5 +25,6 @@ def login():
     else:
         # Nếu thông tin đăng nhập không chính xác, chuyển hướng lại trang đăng nhập
         return redirect(url_for('home'))
+
 if __name__ == '__main__':
     app.run(debug=True)
