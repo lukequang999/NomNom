@@ -18,13 +18,17 @@ def login():
     if username in user_accounts and user_accounts[username] == password:
         if username == 'admin':
             # Nếu là admin, chuyển hướng đến trang Dashboard
-            return redirect(url_for('dashboard', username=username))
+            return redirect(url_for('dashboard'))
         else:
             # Nếu là người dùng khác, chuyển hướng đến trang home
             return redirect(url_for('home', username=username))
     else:
         # Nếu thông tin đăng nhập không chính xác, chuyển hướng lại trang đăng nhập
         return redirect(url_for('home'))
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('static/dashboard.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

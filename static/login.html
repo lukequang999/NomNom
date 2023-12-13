@@ -97,9 +97,11 @@
         </div>
 
         <div id="login-form">
-            <input type="text" placeholder="Email hoặc số điện thoại">
-            <input type="password" placeholder="Mật khẩu">
-            <button type="button">Đăng Nhập</button>
+            <form action="/login" method="post">
+                <input type="text" name="username" placeholder="Email hoặc số điện thoại">
+                <input type="password" name="password" placeholder="Mật khẩu">
+                <button type="submit">Đăng Nhập</button>
+            </form>
         </div>
 
         <div id="register-form">
