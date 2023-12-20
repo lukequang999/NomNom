@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NomNom Administrator Dashboard</title>
-
-    <!-- Thêm đường dẫn đến thư viện Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -96,10 +93,14 @@
             background-color: #c82333;
         }
 
-        /* Phần CSS cho biểu đồ Traffic Analytics */
-        #trafficChart {
-            max-width: 100%;
-            margin-top: 20px;
+        .edit-panel {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .permissions-checkbox {
+            display: flex;
+            gap: 10px;
         }
     </style>
 </head>
@@ -112,13 +113,11 @@
 
         <div id="user-analytics">
             <h2>User Analytics</h2>
-            <!-- Thêm thẻ canvas để vẽ biểu đồ -->
             <canvas id="userChart" width="400" height="200"></canvas>
         </div>
 
         <div id="traffic-analytics">
             <h2>Traffic Analytics</h2>
-            <!-- Thêm thẻ canvas để vẽ biểu đồ -->
             <canvas id="trafficChart" width="400" height="200"></canvas>
         </div>
 
@@ -131,6 +130,7 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -139,14 +139,17 @@
                         <td>Sample Post 1</td>
                         <td>John Doe</td>
                         <td>2023-01-01</td>
+                        <td>
+                            <div class="crud-buttons">
+                                <button class="crud-button edit-button" onclick="editPost(this)">Edit</button>
+                                <button class="crud-button delete-button">Delete</button>
+                            </div>
+                            <div class="edit-panel" style="display: none;">
+                                <label>Edit Post:</label>
+                                <button class="crud-button save-button" onclick="savePost(this)">Save</button>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Sample Post 2</td>
-                        <td>Jane Doe</td>
-                        <td>2023-01-05</td>
-                    </tr>
-                    <!-- Thêm các dòng khác tùy thuộc vào dữ liệu của bạn -->
                 </tbody>
             </table>
         </div>
@@ -159,7 +162,7 @@
                         <th>ID</th>
                         <th>Role Name</th>
                         <th>Permissions</th>
-                        <th>Actions</th> <!-- Thêm cột Actions -->
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -169,90 +172,26 @@
                         <td>Create, Read, Update, Delete</td>
                         <td>
                             <div class="crud-buttons">
-                                <button class="crud-button">Edit</button>
+                                <button class="crud-button edit-button" onclick="editRole(this)">Edit</button>
                                 <button class="crud-button delete-button">Delete</button>
+                            </div>
+                            <div class="edit-panel" style="display: none;">
+                                <label>Edit Permissions:</label>
+                                <div class="permissions-checkbox">
+                                    <label><input type="checkbox" class="permission-checkbox" value="create"> Create</label>
+                                    <label><input type="checkbox" class="permission-checkbox" value="read"> Read</label>
+                                    <label><input type="checkbox" class="permission-checkbox" value="update"> Update</label>
+                                    <label><input type="checkbox" class="permission-checkbox" value="delete"> Delete</label>
+                                </div>
+                                <button class="crud-button save-button" onclick="saveRole(this)">Save</button>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Editor</td>
-                        <td>Read, Update</td>
-                        <td>
-                            <div class="crud-buttons">
-                                <button class="crud-button">Edit</button>
-                                <button class="crud-button delete-button">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Thêm các dòng khác  -->
                 </tbody>
             </table>
         </div>
-
-        <!-- ... (Thêm các phần tử khác ) -->
-
     </div>
 
-    <script>
-        // Dữ liệu mẫu cho biểu đồ User Analytics
-        var userChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [{
-                label: 'User Signups',
-                data: [20, 25, 18, 30, 15],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        // Lấy thẻ canvas và vẽ biểu đồ User Analytics
-        var ctxUser = document.getElementById('userChart').getContext('2d');
-        var userChart = new Chart(ctxUser, {
-            type: 'bar',
-            data: userChartData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        // Dữ liệu mẫu cho biểu đồ Traffic Analytics
-        var trafficChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [{
-                label: 'Page Views',
-                data: [500, 700, 600, 800, 900],
-                fill: false,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 2,
-                pointRadius: 5,
-                pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                pointBorderColor: 'rgba(255, 255, 255, 1)',
-                pointHoverRadius: 8,
-                pointHoverBackgroundColor: 'rgba(255, 99, 132, 1)',
-                pointHoverBorderColor: 'rgba(255, 255, 255, 1)'
-            }]
-        };
-
-        // Lấy thẻ canvas và vẽ biểu đồ Traffic Analytics
-        var ctxTraffic = document.getElementById('trafficChart').getContext('2d');
-        var trafficChart = new Chart(ctxTraffic, {
-            type: 'line',
-            data: trafficChartData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
-
+    <script src="static/js/script.js"></script>
 </body>
 </html>
