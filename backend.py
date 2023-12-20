@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 
-app = Flask(__name__, template_folder=os.path.abspath('C:\\Users\\trann\\OneDrive\\Desktop\\NomNom-main\\NomNom'))
+app = Flask(__name__, template_folder=os.path.abspath('C:\\Users\\Administrator\\Desktop\\CNPM'))
 
 # Dữ liệu tài khoản người dùng
 user_accounts = {'admin': '1234', 'guest': 'password','member':'1234'}
