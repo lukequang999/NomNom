@@ -1,0 +1,158 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#nomnom-logo {
+    text-align: center;
+    padding: 20px 0;
+}
+
+#nomnom-logo h1 {
+    color: #1877f2;
+    margin: 0;
+}
+
+#Header_Block_1{
+    background-color: white;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+}
+
+.Menu_x{
+    float: left;
+    list-style: none;
+}
+
+.Menu_x>li{
+    float: left;
+    padding: 5px;
+}
+
+.Menu_x>li>a{
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+}
+
+#Header_Block_1_Div_3_Menu_2>li>a{
+    color:  black;
+}
+
+#Header_Block_1_Div_2{
+    padding: 30px;
+}
+
+#Header_Block_2{
+    width: 100%;
+    height: 500px;
+    background: url("Picture_1.jpg");
+    background-size: cover;
+}
+
+#Header_Block_3{
+    position: absolute;
+    margin-top: 70px;
+}
+
+#Header_Block_3{
+    background-color: white;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+#Header_Block_3 li{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#Header_Block_4{
+    position: absolute;
+    background-color: rgba(11,11,11,0.4);
+    height: 100px;
+    width: 100%;
+    margin-top: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Header_Block_4_Menu_1>li{
+    width: 200px;
+    text-align: center;
+}
+
+#Header_Block_4_Menu_1>li>a{
+    font-size: 26px;
+}
+
+#Body_1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#Article_Block_1{
+    position: relative;
+    background-color: #E5E4E2;
+    width: 100%;
+    padding: 20px;
+
+}
+
+#Article_Block_1_For_Dash{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#Article_Block_1_For_Dash>a{
+    float: left;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    color: white;
+    padding-top: 5px;
+}
+
+#Article_Block_2{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+
+}
+
+#Article_Block_2_For_Dash{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#Article_Block_2_For_Dash>a{
+    float: left;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    color: white;
+    padding-top: 5px;
+}
+ 
+#Article_Block_3{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+#Article_Block_3_For_List div{
+    width: 100%;
+}
