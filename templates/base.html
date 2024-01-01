@@ -1,0 +1,258 @@
+<!-- File: base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>{% block title %}NomNom{% endblock %}</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        #nomnom-logo {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #nomnom-logo h1 {
+            color: #1877f2;
+            margin: 0;
+        }
+
+        #Header_Block_1{
+            background-color: white;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+        }
+
+        .Menu_x{
+            float: left;
+            list-style: none;
+        }
+
+        .Menu_x>li{
+            float: left;
+            padding: 5px;
+        }
+
+        .Menu_x>li>a{
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+        }
+
+        #Header_Block_1_Div_3_Menu_2>li>a{
+            color:  black;
+        }
+
+        #Header_Block_1_Div_2{
+            padding: 30px;
+        }
+
+        #Header_Block_2{
+            width: 100%;
+            height: 500px;
+            background: url("static/Picture_1.jpg");
+            background-size: cover;
+        }
+
+        #Header_Block_3{
+            position: absolute;
+            margin-top: 70px;
+        }
+
+        #Header_Block_3{
+            background-color: white;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #Header_Block_3 li{
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        #Header_Block_4{
+            position: absolute;
+            background-color: rgba(11,11,11,0.4);
+            height: 100px;
+            width: 100%;
+            margin-top: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #Header_Block_4_Menu_1>li{
+            width: 200px;
+            text-align: center;
+        }
+
+        #Header_Block_4_Menu_1>li>a{
+            font-size: 26px;
+        }
+
+        #Body_1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #Article_Block_1{
+            position: relative;
+            background-color: #E5E4E2;
+            width: 100%;
+            padding: 20px;
+
+        }
+
+        #Article_Block_1_For_Dash{
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        #Article_Block_1_For_Dash>a{
+            float: left;
+            padding-left: 10px;
+            padding-bottom: 20px;
+            text-decoration: none;
+            color: white;
+            padding-top: 5px;
+        }
+
+        #Article_Block_2{
+            position: relative;
+            width: 100%;
+            padding: 20px;
+
+        }
+
+        #Article_Block_2_For_Dash{
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        #Article_Block_2_For_Dash>a{
+            float: left;
+            padding-left: 10px;
+            padding-bottom: 20px;
+            text-decoration: none;
+            color: white;
+            padding-top: 5px;
+        }
+        
+        #Article_Block_3{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+
+        #Article_Block_3_For_List div{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="static/js/bootstrap.bundle.js"></script>
+
+    <div id="Header">
+        <div id="just-for-shadow" class="shadow-lg" style="background-color: white;width: 100%;position: relative;top: 0;z-index: 100;">
+            <div id="Header_Block_1" class="d-flex justify-content-between align-items-center">
+                <div id="Header_Block_1_Div_1" class="d-flex align-items-center">
+                    <div id="nomnom-logo" style="margin-top: -14px;margin-left: 150px;">
+                        <h1>NomNom</h1>
+                    </div>
+                    <ul class="Menu_x" id="Header_Block_1_Div_1_Menu_1" style="margin-top: 14px;">
+                        <li><a href="#">Food Social Network</a></li>
+                    </ul>
+                </div>
+                <div id="Header_Block_1_Div_3" class="d-flex align-items-center">
+                    <ul class="Menu_x" id="Header_Block_1_Div_3_Menu_2" style="margin-right: 150px; margin-top: 14px;">
+                        {% if current_user.is_authenticated %}
+                            <!-- Welcome message and small buttons -->
+                            <li class="nav-item">
+                                <span class="nav-link btn btn-link" onclick="showEditProfileForm()">
+                                    <span class="fa-solid fa-user"></span> Chào mừng {{ current_user.username }}
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link btn btn-link" onclick="showEditProfileForm()">Chỉnh sửa hồ sơ</span>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link btn btn-link" onclick="showChangePasswordForm()">Đổi mật khẩu</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-link" href="{{ url_for('logout') }}">Đăng xuất</a>
+                            </li>
+                        {% else %}
+                            <!-- Login/Register button -->
+                            <li><a href="{{ url_for('form_login') }}" class="btn btn-link"><span class="fa-solid fa-user"></span> Đăng nhập/Đăng ký</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div id="Header_Block_3">
+                    <!-- Add your additional header content here if needed -->
+                </div>
+            </div>
+            <div id="Header_Block_2"></div>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <div id="Footer_1" style="display: flex; align-items: center; justify-content: space-between; width: 100%; height: 80px; border-top: 1px solid #E5E4E2;">
+        <div id="nomnom-logo" class="nomnom-logo" style="margin-left: 80px;">
+            <h1>NomNom</h1>
+        </div>
+        <div>
+            <img id="Logo_TL" width="10%" src="static/Logo_TL.png" style="width: 5%;margin-left: 1000px;">
+            <img id="Logo_TL" width="5%" src="static/Logo_CSE.png" style="margin-left: 20px;">
+        </div>
+    </div>
+
+    <div id="Footer_2" style="width: 100%; height: 200px; border-top: 1px solid #E5E4E2;">
+        <div id="Footer_2_Div_1" style="width: 50%;float: left;">
+            <h5 style="margin-left: 80px;margin-top: 40px;">Nhóm 10</h5>
+            <p style="margin-left: 80px;">Bộ môn công nghệ phần mềm </br>
+                Giảng viên </br>
+                Khoa công nghệ thông tin Đại học Thủy Lợi
+            </p>
+        </div>
+        <div id="Footer_2_Div_2" style="width: 50%;float: left;">
+            <p style="margin-left: 400px;margin-top: 60px;">© 2023 Your Website. All rights reserved.</p>
+            <p style="margin-left: 400px;"><a href="/terms" style="color: black;">Terms of Service</a> | <a href="/privacy" style="color: black;">Privacy Policy</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showEditProfileForm() {
+            // Add your logic to show the edit profile form
+            console.log('Showing edit profile form');
+        }
+
+        function showChangePasswordForm() {
+            // Add your logic to show the change password form
+            console.log('Showing change password form');
+        }
+    </script>
+</body>
+</html>

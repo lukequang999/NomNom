@@ -91,52 +91,45 @@ def register():
             flash('Tạo tài khoản thành công!', 'success')
             return redirect(url_for('login'))
 
-    return render_template('NomNom-main/login.html', error=error)
-
-@app.route('/article/<int:ID_article>')
-def display_article(ID_article):
-    # Truy vấn CSDL để lấy thông tin bài viết
-    query = 'SELECT Title, Content FROM Articles WHERE ID_article = ?'
-    cursor.execute(query, (ID_article,))
-    article = cursor.fetchone()
-
-    if article is None:
-        return 'Article not found'
-
-    return render_template('NomNom-main/static/content.html', article=article)
-
-@app.route('/content_manage/<int:ID_User>')
+    return render_template('login.html', error=error)
+@app.route('/dashboard')
 @login_required
-def display_list(ID_User):
+def dashboard():
+    username = current_user.username
+    return render_template('dashboard.html', username=username)
+
+@app.route('/member')
+@login_required
+def member():
     # Truy vấn CSDL để lấy danh sách bài viết của người dùng
-    query = 'SELECT Title, ID_article FROM Articles WHERE ID_user = ?'
-    cursor.execute(query, (ID_User,))
+    query = 'SELECT ID_article, Title, Content, Descript FROM Articles WHERE ID_user = ?'
+    cursor.execute(query, (current_user.get_id(),))
     articles = cursor.fetchall()
 
-    return render_template('NomNom-main/static/ContentManage.html', articles=articles)
+    return render_template('member.html', current_user=current_user, articles=articles)
 
-@app.route('/delete_article/<int:article_id>', methods=['DELETE'])
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+@app.route('/form_login')
+def form_login():
+    return render_template('login.html')
+
+@app.route('/logout')
 @login_required
-def delete_article(article_id):
-    try:
-        # Truy vấn CSDL để xóa bài viết
-        query = 'DELETE FROM Articles WHERE ID_article = ?'
-        cursor.execute(query, (article_id,))
-        conn.commit()
-
-        return '', 204
-    except pyodbc.Error as e:
-        print(f'Error deleting article: {e}')
-        return '', 500
-
-@app.route('/addcontent', methods=['GET', 'POST'])
+def logout():
+    logout_user()
+    flash('Đăng xuất thành công!', 'success')
+    return redirect(url_for('index'))
+@app.route('/create_article', methods=['GET', 'POST'])
 @login_required
-def submit_article():
+def create_article():
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
         content = request.form['content']
-        author = current_user.username  # Sử dụng thông tin người dùng hiện tại
+        author = current_user.username
 
         try:
             # Truy vấn CSDL để lấy ID_user
@@ -155,38 +148,12 @@ def submit_article():
             conn.commit()
 
             flash('Bài viết đã được thêm thành công!', 'success')
-            return redirect(url_for('content_manage', ID_User=user_id))
+            # Tạm thời thoát ra phần bài DS bài viết
+            return redirect(url_for('member', ID_User=user_id))
 
         except pyodbc.Error as e:
             flash(f'Lỗi khi thêm bài viết: {str(e)}', 'danger')
 
-    return render_template('NomNom-main/static/AddContent.html')
-
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    username = current_user.username
-    return render_template('dashboard.html', username=username)
-
-@app.route('/member')
-@login_required
-def member():
-    return render_template('member.html', current_user=current_user, current_email=current_user.email)
-
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
-@app.route('/form_login')
-def form_login():
-    return render_template('login.html')
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    flash('Đăng xuất thành công!', 'success')
-    return redirect(url_for('index'))
-
+    return render_template('AddContent.html')
 if __name__ == '__main__':
     app.run(debug=True)
