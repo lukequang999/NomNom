@@ -185,7 +185,13 @@
                 </div>
                 <div id="Header_Block_1_Div_3" class="d-flex align-items-center">
                     <ul class="Menu_x" id="Header_Block_1_Div_3_Menu_2" style="margin-right: 150px;margin-top: 14px;">
-                        <li><a href="templates/login.html"><span class="fa-solid fa-user"></span>Đăng nhập/Đăng ký</a></li>
+                        {% if current_user.is_authenticated %}
+                        <!-- Hiển thị chào mừng khi đã đăng nhập -->
+                        <li><a href="{{ url_for('logout') }}"><span class="fa-solid fa-user"></span>Chào mừng {{ current_user.username }}</a></li>
+                    {% else %}
+                        <!-- Hiển thị nút Đăng nhập/Đăng ký khi chưa đăng nhập -->
+                        <li><a href="{{ url_for('form_login') }}"><span class="fa-solid fa-user"></span>Đăng nhập/Đăng ký</a></li>
+                    {% endif %}
                     </ul>
                 </div>
             </div>
@@ -197,7 +203,7 @@
                         <li><a href="">Đề xuất hôm nay</a></li>
                         <li><a href="">Quán ăn gần bạn</a></li>
                         <li><a href="">Review - Đánh giá</a></li>
-                        <li><a href="templates/member.html">Khu vực thành viên</a></li>
+                        <li><a href="{{url_for('member')}}">Khu vực thành viên</a></li>
 
                     </ul>
                 </div>

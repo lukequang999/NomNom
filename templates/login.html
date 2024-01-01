@@ -83,6 +83,16 @@
         button:hover {
             background-color: #1469c1;
         }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        #server-error {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -97,27 +107,57 @@
         </div>
 
         <div id="login-form">
-            <form action="/login" method="post">
-                <input type="text" name="username" placeholder="Email hoặc số điện thoại">
+            <form action="/login" method="post" onsubmit="return showError()">
+                <input type="text" name="username" placeholder="Username">
                 <input type="password" name="password" placeholder="Mật khẩu">
                 <button type="submit">Đăng Nhập</button>
             </form>
+            <div id="error-message" style="color: red; margin-top: 10px;"></div>
         </div>
 
         <div id="register-form">
-            <input type="text" placeholder="Họ và tên">
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Mật khẩu">
-            <button type="button">Đăng Ký</button>
+            <form action="/register" method="post" onsubmit="return showError()">
+                <input type="text" name="username" placeholder="username" required>
+                <input type="text" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Mật khẩu" required>
+                <button type="submit">Đăng Ký</button>
+            </form>
+            <div id="error-message" style="color: red; margin-top: 10px;"></div>
+        </div>
+
+        <div id="server-error">
+            {% if error %}
+                {{ error }}
+            {% endif %}
         </div>
     </div>
-
     <script>
         function showTab(tabId) {
             document.getElementById('login-form').style.display = 'none';
             document.getElementById('register-form').style.display = 'none';
             document.getElementById(tabId).style.display = 'block';
+            clearError(); 
         }
-    </script>
+    
+        function showError() {
+            var errorElement = document.getElementById('error-message');
+            var serverErrorElement = document.getElementById('server-error');
+            serverErrorElement.innerHTML = ''; // Xoá lỗi mỗi lần sumbit lại
+            
+            // Kiểm tra lỗi từ server
+            var serverError = serverErrorElement.innerText.trim();
+            if (serverError) {
+                errorElement.innerHTML = serverError;
+                return false;
+            }
+            
+            return true;
+        }
+    
+        function clearError() {
+            document.getElementById('error-message').innerHTML = '';
+            document.getElementById('error-message').style.display = 'none';
+        }
+    </script>    
 </body>
 </html>
