@@ -189,15 +189,15 @@
                         {% if current_user.is_authenticated %}
                             <!-- Welcome message and small buttons -->
                             <li class="nav-item">
-                                <span class="nav-link btn btn-link" onclick="showEditProfileForm()">
+                                <span class="nav-link btn btn-link" href="{{url_for('edit_account')}}">
                                     <span class="fa-solid fa-user"></span> Chào mừng {{ current_user.username }}
                                 </span>
                             </li>
                             <li class="nav-item">
-                                <span class="nav-link btn btn-link" onclick="showEditProfileForm()">Chỉnh sửa hồ sơ</span>
+                                <span class="nav-link btn btn-link" onclick="window.location.href='{{url_for('edit_account')}}'">Chỉnh sửa hồ sơ</span>
                             </li>
                             <li class="nav-item">
-                                <span class="nav-link btn btn-link" onclick="showChangePasswordForm()">Đổi mật khẩu</span>
+                                <span class="nav-link btn btn-link" onclick="window.location.href='{{url_for('edit_account')}}'">Đổi mật khẩu</span>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link btn btn-link" href="{{ url_for('logout') }}">Đăng xuất</a>

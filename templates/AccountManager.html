@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Account{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>User Management - Account Form</h1>
+    <div id="Article_Block_3_For_List" style="float: left; width: 60%; position: relative; margin-left: 20px; margin-top: 20px;"></div>
+      <form action="{{ url_for('update_account') }}" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" value="{{ current_user.username }}">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="{{ current_user.email }}">
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div class="buttons-container">
+          <button class="delete-button" formaction="{{ url_for('delete_account') }}">Delete Account</button>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+</div>
+{% endblock %}

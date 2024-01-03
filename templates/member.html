@@ -21,9 +21,11 @@
         {% for article in articles %}
             <div class="card" style="width: calc(33.33% - 20px); margin-bottom: 20px;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ article.Title }}</h5>
+                    <p class="card-title">{{ article.Title }}</p>
                     <p class="card-text">{{ article.Content }}</p>
                     <p class="card-text">{{ article.Descript }}</p>
+                    <button class="delete-button" onclick="deleteArticle('{{ article.ID_article }}')">Xóa</button>
+                    <button class="edit-button" onclick="editArticle('{{ article.ID_article }}')">Sửa</button>
                 </div>
             </div>
             {% if loop.index % 3 == 0 %}
@@ -31,4 +33,29 @@
             {% endif %}
         {% endfor %}
     </div>
+    <script>
+        function deleteArticle(articleId) {
+            if (confirm('Bạn có chắc chắn muốn xóa bài viết này không?')) {
+                // Gửi yêu cầu xóa bài viết đến máy chủ
+                fetch('/delete_article/' + articleId, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Yêu cầu xóa thành công, làm mới trang
+                        location.reload();
+                    } else {
+                        alert('Đã xảy ra lỗi khi xóa bài viết.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Đã xảy ra lỗi:', error);
+                    alert('Đã xảy ra lỗi khi xóa bài viết.');
+                });
+            }
+        }
+        function editArticle(articleId) {
+                window.location.href = '/edit_article/' + articleId;
+}
+    </script>
 {% endblock %}

@@ -116,14 +116,16 @@
         </div>
 
         <div id="register-form">
-            <form action="/register" method="post" onsubmit="return showError()">
+            <form action="/register" method="post" onsubmit="return showError(), showSuccess()">
                 <input type="text" name="username" placeholder="username" required>
                 <input type="text" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Mật khẩu" required>
                 <button type="submit">Đăng Ký</button>
             </form>
             <div id="error-message" style="color: red; margin-top: 10px;"></div>
+            <div id="success-message" style="color: green; margin-top: 10px; display: none;">Đăng ký thành công!</div>
         </div>
+        
 
         <div id="server-error">
             {% if error %}
@@ -150,7 +152,6 @@
                 errorElement.innerHTML = serverError;
                 return false;
             }
-            
             return true;
         }
     
