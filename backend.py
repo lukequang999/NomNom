@@ -177,37 +177,36 @@ def display_article(ID_article):
         return 'Article not found'
     return render_template('content.html', article=article)
 
-app.route('/edit_article/<article_id>', methods=['GET', 'POST'])
+@app.route('/edit_article/<int:article_id>', methods=['GET', 'POST'])
 @login_required
 def edit_article(article_id):
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
         content = request.form['content']
-        author = current_user.username
 
         try:
-            # Truy vấn CSDL để lấy ID_user
-            query_user_id = 'SELECT ID_user FROM User_Accounts WHERE Username = ?'
-            cursor.execute(query_user_id, (author,))
-            row = cursor.fetchone()
-            if row is None:
-                    return 'Người dùng không tồn tại.'
-            
-            user_id = row[0]
-
+            # Truy vấn CSDL để cập nhật bài viết
             query_update = "UPDATE Articles SET Title=?, Content=?, Descript=? WHERE ID_article=?"
             cursor.execute(query_update, (title, content, description, article_id))
             conn.commit()
-            
-            flash('Chỉnh sửa bài viết thành công!', 'success')
 
-            return redirect(url_for('member', ID_User=user_id))
-        
+            flash('Chỉnh sửa bài viết thành công!', 'success')
+            return redirect(url_for('member'))
+
         except pyodbc.Error as e:
             flash(f'Lỗi khi sửa bài viết: {str(e)}', 'danger')
-    
-    return render_template('member.html')
+
+    # Truy vấn CSDL để lấy thông tin bài viết cần chỉnh sửa
+    query_select = 'SELECT Title, Content, Descript FROM Articles WHERE ID_article = ?'
+    cursor.execute(query_select, (article_id,))
+    article_data = cursor.fetchone()
+
+    if article_data:
+        return render_template('edit_content.html', article_id=article_id, article_data=article_data)
+    else:
+        flash('Bài viết không tồn tại!', 'danger')
+        return redirect(url_for('member'))
 
 @app.route('/edit-account', methods=['GET'])
 @login_required

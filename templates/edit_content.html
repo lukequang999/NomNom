@@ -8,17 +8,17 @@
     <form method="post" action="{{ url_for('edit_article', article_id=article_id) }}">
         <div class="mb-3">
             <label for="title" class="form-label">Tiêu đề</label>
-            <input type="text" class="form-control" id="title" name="title" required>
+            <input type="text" class="form-control" id="title" name="title" value="{{ article_data.Title }}" required>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Mô tả</label>
-            <input type="text" class="form-control" id="description" name="description" required>
+            <input type="text" class="form-control" id="description" name="description" value="{{ article_data.Descript }}" required>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Nội dung</label>
-            <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+            <textarea class="form-control" id="content" name="content" rows="4" required>{{ article_data.Content }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Thêm bài viết</button>
+        <button type="submit" class="btn btn-primary">Lưu chỉnh sửa</button>
     </form>
 </div>
 {% endblock %}
